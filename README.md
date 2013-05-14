@@ -2,4 +2,3 @@ battleship
 ==========
 
 ohjelmoinnin harjoitustyö
-testi
