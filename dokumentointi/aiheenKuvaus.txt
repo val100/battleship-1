@@ -1,0 +1,24 @@
+Aiheen kuvaus 
+
+Aihe: Laivanupotus-peli
+Toteutetaan versio laivanupotus-pelistä, jossa ihmispelaaja pelaa tietokonetta
+vastaan erän laivanupotusta. Peli käydään 10x10 ruudun kentällä, jolle pelaaja 
+sijoittaa laivastonsa. Tietokone sijoittaa omat laivansa vastaavaan ruudukkoon. 
+Tämän jälkeen peli käynnistyy. Pelissä pelaaja ja tietokone vuorotellen 
+pommittavat yhtä ruutua kerrallaan yrittäen osua vastustajan laivoihin. Pelin 
+voittaa se osapuoli, joka saa ensimmäisenä tuhottua kaikki vastustajan laivat.
+
+Ohjelma pitää kirjaa pelin voittajasta, käytetyistä kierroksista jne. ja näyttää 
+pelatun kierroksen jälkeen 10 parasta tulosta. Pelaaja voi tallentaa tuloksen 
+yhteyteen nimimerkin. 
+
+Pelille toteutetaan graafinen käyttöliittymä.
+
+Pelin laivasto:
+1 x Lentotukialus: 1x5 ruutua
+1 x Risteilijä: 1x4 ruutua
+2 x Hävittäjä: 1x3 ruutua
+2 x Partioalus: 1x2 ruutua
+
+Käyttäjät: 1 pelaaja, joka voi tunnistautua nimimerkillä.
+
