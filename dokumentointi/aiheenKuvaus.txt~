@@ -14,10 +14,6 @@ yhteyteen nimimerkin.
 
 Pelille toteutetaan graafinen käyttöliittymä.
 
-Pelissä on valittavissa muutama eri koko pelilaudalle (tarkentuu)
-
-(Laajennuksena ehkä erilaisia aseita käyttöön?)
-
 Pelin laivasto:
 1 x Lentotukialus: 1x5 ruutua
 1 x Risteilijä: 1x4 ruutua
@@ -26,9 +22,3 @@ Pelin laivasto:
 
 Käyttäjät: 1 pelaaja, joka voi tunnistautua nimimerkillä.
 
-Käyttäjän toiminnot: 
-- Nimimerkin syöttö
-- Laivan asetus
-- Ampuminen kohdetauluun
-- Pelin lopetus
-- Lopputuloksen tallentaminen
