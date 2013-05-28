@@ -18,9 +18,9 @@ public class Logic {
     private Scanner input;
 
     public Logic() {
-        int size = startMenu();
-        this.userBoard = new Board(size, size);
-        this.compBoard = new TargetBoard(size, size);
+        BoardSize size = startMenu();
+        this.userBoard = new Board(size.getSize(), size.getSize());
+        this.compBoard = new TargetBoard(size.getSize(), size.getSize());
         this.userBoard.initBoard();
         this.compBoard.initBoard();
         this.player = new PlayerUser(userBoard, compBoard);
@@ -28,29 +28,111 @@ public class Logic {
         this.fileHandler = new FileHandler();
     }
     
-    private int startMenu() {
+    private BoardSize startMenu() {
         this.input = new Scanner(System.in);
         int selection = 0;
+        BoardSize size;
         while (true) {
             System.out.println("Select board size:");
-            System.out.println("1 - 5 x 5");
-            System.out.println("2 - 8 x 8");
-            System.out.println("3 - 10 x 10");
+            System.out.println("1 - 8 x 8");
+            System.out.println("2 - 10 x 10");
+            System.out.println("3 - 15 x 15");
             System.out.print("selection: ");
             try {
                 selection = Integer.parseInt(input.nextLine());
-                if (selection < 1 || selection > 3) {
-                    System.out.println("invalid selection!");
-                    continue;
-                }                             
+                if (selection == 1) {
+                   size = BoardSize.EASY; 
+                   break;
+                } else if (selection == 2) {
+                    size = BoardSize.NORMAL;
+                    break;
+                } else if (selection == 3) {
+                    size = BoardSize.HARD;
+                    break;
+                }
+                System.out.println("invalid selection!\n");
             } catch (Exception e) {
-                System.out.println("invalid selection!");
+                System.out.println("invalid selection!\n");
+            }
+        }
+        return size;
+    }
+    
+    public void userPlaceShips() {
+        System.out.println("Place your ships!");
+        
+    }
+    
+    public void startGame() {
+        System.out.println("piu");
+        comp.placeShips();
+        while (true) {
+            if (gameEnded()) {
+                break;
+            }
+            userBoard.drawBoard();
+            compBoard.drawBoard();
+            int x = getXCoord();
+            int y = getYCoord();
+            player.shoot(x, y);
+            comp.shoot(x, y);
+        }
+    }
+   
+    public boolean gameEnded() {
+        if (compBoard.shipSquaresLeft() == 0) {
+            System.out.println("YOU WIN");
+            return true;
+        
+        } //else if (userBoard.shipSquaresLeft() == 0) {
+          //  System.out.println("YOU LOSE");
+          //  return true;
+        //}
+        return false;
+    }
+    
+    public int getXCoord() {
+        int coord = 0;
+        while (true) {
+            System.out.print("Give X coordinate for shot: ");
+            coord = getIntInput();
+            if (coord < 0 || coord > compBoard.getWidth()-1) {
+                System.out.println("invalid coordinate! try again");
+                continue;
+            }
+            
+            break;
+        }
+        return coord;
+    }
+    
+    public int getYCoord() {
+        int coord = 0;
+        while (true) {
+            System.out.print("Give Y coordinate for shot: ");
+            coord = getIntInput();
+            if (coord < 0 || coord > compBoard.getWidth()-1) {
+                System.out.println("invalid coordinate! try again");
+                continue;
+            }
+            
+            break;
+        }
+        return coord;
+    }
+    
+    public int getIntInput() {
+        int number = 0;
+        while (true) {
+            try {
+                number = Integer.parseInt(input.nextLine());
+            } catch (Exception e) {
+                System.out.println("Invalid input! try again ...");
                 continue;
             }
             break;
         }
-        return selection;
+        return number;
+        
     }
-   
-    
 }

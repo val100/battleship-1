@@ -68,13 +68,24 @@ public class Board {
             return false;
         }
         
-        //check other ship       
-        
-        
+        //check for other ships -- maybe needs to be better?
+        int checkX = startX;
+        int checkY = startY;
+        for (int i = 0; i < size; i++) {
+            
+            
+            if (board[checkY][checkX] == BOARD_SHIP) {
+                return false;
+            }
+            if (orientation == DIR_HORIZONTAL) {
+                checkX++;
+            } else {
+                checkY++;
+            }
+        }
         
         // place ship
         for (int i = 0; i < size; i++) {
-            //check other ship -- bad solution
             if (board[startY][startX] == BOARD_SHIP) {
                 return false;
             }
@@ -117,5 +128,17 @@ public class Board {
     
     public int cellInfo(int x, int y) {
         return board[y][x];
+    }
+    
+    public int shipSquaresLeft() {
+        int numShipsLeft = 0;
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (board[i][j] == BOARD_SHIP) {
+                    numShipsLeft++;
+                }
+            }
+        }
+        return numShipsLeft;
     }
 }

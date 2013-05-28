@@ -11,8 +11,10 @@ package battleship.domain;
 public enum Ship {
     CARRIER (5),
     CRUISER (4),
-    DESTROYER (3),
-    PATROL_BOAT (2);
+    DESTROYER_1 (3),
+    DESTROYER_2 (3),
+    PATROL_BOAT_1 (2),
+    PATROL_BOAT_2 (2);
     
     private final int length;
     
