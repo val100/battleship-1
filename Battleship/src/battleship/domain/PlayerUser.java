@@ -40,12 +40,12 @@ public class PlayerUser {
         return this.numShots;
     }
     
-    public int getNumHits() {
-        return this.numHits;
-    }
+    //public int getNumHits() {
+    //    return this.numHits;
+    //}
     
     // score == shots / hits
     public int getScore() {
-        return this.numShots / this.numHits;
+        return this.numShots / (this.myBoard.getHeight() * this.myBoard.getWidth());
     }
 }

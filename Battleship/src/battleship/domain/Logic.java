@@ -61,17 +61,45 @@ public class Logic {
     public void userPlaceShips() {
         System.out.println("Place your ships!");
         
+        for (Ship s : Ship.values()) {
+            while (true) {    
+                userBoard.drawBoard();
+                System.out.println("Give starting coordinates for ship " + s.name() + "(length: " + s.getLength() + ")");                
+                int x = getXCoord();
+                int y = getYCoord();
+                System.out.print("Give orientation (0 - horizontal, 1 - vertical): ");
+                int orientation = getIntInput();
+                if (orientation < 0 || orientation > 1) {
+                    System.out.println("Invalid orientation! try again!");
+                    continue;
+                }
+                if (!userBoard.placeShip(x, y, orientation, s.getLength())) {
+                    System.out.println("invalid selection! try again");
+                    continue;
+                }
+                break; 
+            }
+            
+               
+            
+        }
+        System.out.println("\nDone. Let the game begin!\n");
+        
     }
     
     public void startGame() {
         System.out.println("piu");
         comp.placeShips();
+        userPlaceShips();
         while (true) {
             if (gameEnded()) {
                 break;
             }
+            System.out.println("Your board:");
             userBoard.drawBoard();
+            System.out.println("Enemy board:");
             compBoard.drawBoard();
+            System.out.println("Your turn to shoot!");
             int x = getXCoord();
             int y = getYCoord();
             player.shoot(x, y);
@@ -82,6 +110,7 @@ public class Logic {
     public boolean gameEnded() {
         if (compBoard.shipSquaresLeft() == 0) {
             System.out.println("YOU WIN");
+            System.out.println("Your score was: " + player.getScore());
             return true;
         
         } //else if (userBoard.shipSquaresLeft() == 0) {
@@ -94,7 +123,7 @@ public class Logic {
     public int getXCoord() {
         int coord = 0;
         while (true) {
-            System.out.print("Give X coordinate for shot: ");
+            System.out.print("Give X coordinate: ");
             coord = getIntInput();
             if (coord < 0 || coord > compBoard.getWidth()-1) {
                 System.out.println("invalid coordinate! try again");
@@ -109,7 +138,7 @@ public class Logic {
     public int getYCoord() {
         int coord = 0;
         while (true) {
-            System.out.print("Give Y coordinate for shot: ");
+            System.out.print("Give Y coordinate: ");
             coord = getIntInput();
             if (coord < 0 || coord > compBoard.getWidth()-1) {
                 System.out.println("invalid coordinate! try again");
