@@ -1,5 +1,6 @@
 
 import battleship.domain.Board;
+import battleship.domain.PlayerComp;
 import battleship.domain.TargetBoard;
 
 /*
@@ -15,13 +16,15 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Battleship\n");
         Board board = new Board(5,5);
-        TargetBoard target = new TargetBoard(5,5);
+        TargetBoard target = new TargetBoard(10,10);
+        
         board.initBoard();
         target.initBoard();
+        PlayerComp comp = new PlayerComp(board, target);
         board.drawBoard();
         target.drawBoard();
         board.placeShip(1, 1, 1, 2);
-        target.placeShip(1, 1, 1, 2);
+        comp.placeShips();
         board.drawBoard();
         target.drawBoard();
         //board.placeShip(3, 2, 0, 2);

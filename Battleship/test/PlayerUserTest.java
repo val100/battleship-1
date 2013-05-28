@@ -52,8 +52,8 @@ public class PlayerUserTest {
     
     @Test
     public void numShotsIncreases() {
-        pelaaja.shoot();
-        pelaaja.shoot();
+        pelaaja.shoot(1, 2);
+        pelaaja.shoot(2, 2);
         assertEquals(2, pelaaja.getNumShots());
     }
 }

@@ -23,7 +23,10 @@ public class TargetBoard extends Board {
                 if (super.getBoard()[i][j] == BOARD_BLANK) {
                     System.out.print(".");
                 } else if (super.getBoard()[i][j] == BOARD_SHIP) {
-                    System.out.print(".");
+                    //debug draw
+                    System.out.print("@");
+                    // real draw
+            //        System.out.print(".");
                 } else if (super.getBoard()[i][j] == BOARD_HIT) {
                     System.out.print("X");
                 } else if (super.getBoard()[i][j] == BOARD_MISS) {

@@ -55,23 +55,31 @@ public class Board {
         System.out.println("");
     }
     
-    public boolean placeShip(int startX, int startY, int direction, int size) {
+    public boolean placeShip(int startX, int startY, int orientation, int size) {
         // check starting coordinates
         if (startX < 0 || startX >= this.width || startY < 0 || startY >= this.height) {
             return false;
         }
         
         // check size
-        if (direction == DIR_HORIZONTAL && startX + size > this.width) {
+        if (orientation == DIR_HORIZONTAL && startX + size > this.width) {
             return false;
-        } else if (direction == DIR_VERTICAL && startY + size > this.height) {
+        } else if (orientation == DIR_VERTICAL && startY + size > this.height) {
             return false;
         }
         
+        //check other ship       
+        
+        
+        
         // place ship
         for (int i = 0; i < size; i++) {
+            //check other ship -- bad solution
+            if (board[startY][startX] == BOARD_SHIP) {
+                return false;
+            }
             board[startY][startX] = BOARD_SHIP;
-            if (direction == DIR_HORIZONTAL) {
+            if (orientation == DIR_HORIZONTAL) {
                 startX++;
             } else {
                 startY++;
