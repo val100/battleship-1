@@ -13,14 +13,19 @@ public class PlayerComp {
     private Board userBoard;
     private TargetBoard compBoard;
     private Random random;
+    private int numShots;
 
     public PlayerComp(Board userBoard, TargetBoard compBoard) {
         this.userBoard = userBoard;
         this.compBoard = compBoard;
         this.random = new Random();
+        this.numShots = 0;
     }
     
-    public boolean shoot(int x, int y) {
+    public boolean shoot() {
+        int x = random.nextInt(userBoard.getWidth());
+        int y = random.nextInt(userBoard.getHeight());
+        numShots++;
         return this.userBoard.shoot(x, y);
         
     }

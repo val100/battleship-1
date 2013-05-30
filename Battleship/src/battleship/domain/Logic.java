@@ -103,7 +103,7 @@ public class Logic {
             int x = getXCoord();
             int y = getYCoord();
             player.shoot(x, y);
-            comp.shoot(x, y);
+            comp.shoot();
         }
     }
    
@@ -113,10 +113,10 @@ public class Logic {
             System.out.println("Your score was: " + player.getScore());
             return true;
         
-        } //else if (userBoard.shipSquaresLeft() == 0) {
-          //  System.out.println("YOU LOSE");
-          //  return true;
-        //}
+        } else if (userBoard.shipSquaresLeft() == 0) {
+            System.out.println("YOU LOSE");
+            return true;
+        }
         return false;
     }
     

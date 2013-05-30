@@ -46,6 +46,6 @@ public class PlayerUser {
     
     // score == shots / hits
     public int getScore() {
-        return this.numShots / (this.myBoard.getHeight() * this.myBoard.getWidth());
+        return this.numShots - (this.myBoard.getHeight() * this.myBoard.getWidth());
     }
 }
