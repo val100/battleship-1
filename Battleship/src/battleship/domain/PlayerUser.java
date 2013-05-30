@@ -15,6 +15,7 @@ public class PlayerUser {
     private TargetBoard compBoard;
     private int numShots;
     private int numHits;
+  //  private String name;
     //private Scanner input;
 
     public PlayerUser(Board myBoard, TargetBoard compBoard) {
@@ -46,6 +47,6 @@ public class PlayerUser {
     
     // score == shots / hits
     public int getScore() {
-        return this.numShots - (this.myBoard.getHeight() * this.myBoard.getWidth());
+        return (this.myBoard.getHeight() * this.myBoard.getWidth()) - this.numShots;
     }
 }

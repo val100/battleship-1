@@ -26,6 +26,7 @@ public class Logic {
         this.player = new PlayerUser(userBoard, compBoard);
         this.comp = new PlayerComp(userBoard, compBoard);
         this.fileHandler = new FileHandler();
+        fileHandler.readScore();
     }
     
     private BoardSize startMenu() {
@@ -84,7 +85,7 @@ public class Logic {
     }
     
     public void startGame() {
-        System.out.println("piu");
+
         comp.placeShips();
         userPlaceShips();
         while (true) {
@@ -102,12 +103,17 @@ public class Logic {
             player.shoot(x, y);
             comp.shoot();
         }
+        fileHandler.readScore();
+        fileHandler.printScore();
     }
    
     public boolean gameEnded() {
         if (compBoard.shipSquaresLeft() == 0) {
             System.out.println("YOU WIN");
             System.out.println("Your score was: " + player.getScore());
+            System.out.print("Give your name: ");
+            String name = input.nextLine();
+            fileHandler.writeScore(name, player.getScore());
             return true;
         
         } else if (userBoard.shipSquaresLeft() == 0) {
