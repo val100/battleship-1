@@ -3,3 +3,4 @@
 22.5.2013 - 1h - suunnittelua
 27.5.2013 - 1h - Lisää luokkia, Enumeja
 28.5.2013 - 7h - Perustoiminnallisuutta, debuggausta
+30.5.2013 - 3h - Toimiva peli tekstimoodissa, testejä, päivitetty luokkakaavio, pistetaulukko
