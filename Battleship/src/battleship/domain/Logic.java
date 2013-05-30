@@ -30,7 +30,6 @@ public class Logic {
     
     private BoardSize startMenu() {
         this.input = new Scanner(System.in);
-        int selection = 0;
         BoardSize size;
         while (true) {
             System.out.println("Select board size:");
@@ -39,7 +38,7 @@ public class Logic {
             System.out.println("3 - 15 x 15");
             System.out.print("selection: ");
             try {
-                selection = Integer.parseInt(input.nextLine());
+                int selection = Integer.parseInt(input.nextLine());
                 if (selection == 1) {
                    size = BoardSize.EASY; 
                    break;
@@ -78,10 +77,7 @@ public class Logic {
                     continue;
                 }
                 break; 
-            }
-            
-               
-            
+            }                                       
         }
         System.out.println("\nDone. Let the game begin!\n");
         
@@ -95,6 +91,7 @@ public class Logic {
             if (gameEnded()) {
                 break;
             }
+            System.out.println("");
             System.out.println("Your board:");
             userBoard.drawBoard();
             System.out.println("Enemy board:");

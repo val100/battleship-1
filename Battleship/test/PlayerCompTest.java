@@ -4,6 +4,7 @@
  */
 
 import battleship.domain.Board;
+import battleship.domain.PlayerComp;
 import battleship.domain.PlayerUser;
 import battleship.domain.TargetBoard;
 import org.junit.After;
@@ -17,13 +18,13 @@ import static org.junit.Assert.*;
  *
  * @author larg
  */
-public class PlayerUserTest {
+public class PlayerCompTest {
     
-    PlayerUser pelaaja;
+    PlayerComp comp;
     Board myBoard;
     TargetBoard target;
     
-    public PlayerUserTest() {
+    public PlayerCompTest() {
     }
     
     @BeforeClass
@@ -36,9 +37,9 @@ public class PlayerUserTest {
     
     @Before
     public void setUp() {
-        myBoard = new Board(5,5);
-        target = new TargetBoard(5,5);
-        pelaaja = new PlayerUser(myBoard, target);
+        myBoard = new Board(8,8);
+        target = new TargetBoard(8,8);
+        comp = new PlayerComp(myBoard, target);
     }
     
     @After
@@ -52,23 +53,27 @@ public class PlayerUserTest {
     
     @Test
     public void numShotsIncreases() {
-        pelaaja.shoot(1, 2);
-        pelaaja.shoot(2, 2);
-        assertEquals(2, pelaaja.getNumShots());
+        comp.shoot();
+        comp.shoot();
+        assertEquals(2, comp.getNumShots());
     }
     
+    
+    
     @Test
-    public void shipPlacedCorrectly() {
-        pelaaja.placeShip(0, 0, 0, 3);
+    public void correctAmountOfShipsPlacedOnBoard() {
         int numShipSquares = 0;
-        int cell;
-        for (int i = 0; i < myBoard.getWidth(); i++) {
-            cell = myBoard.cellInfo(i, 0);
-            if (cell == 1) {
-                numShipSquares++;
+        int cell = 0;
+        comp.placeShips();
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                cell = target.cellInfo(i, j);
+                if (cell == 1) {
+                    numShipSquares++;
+                }
             }
         }
-        assertEquals(3, numShipSquares);
-            
+        assertEquals(19, numShipSquares);
     }
+    
 }

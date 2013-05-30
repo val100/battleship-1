@@ -43,4 +43,8 @@ public class PlayerComp {
         }
     }
     
+    public int getNumShots() {
+        return this.numShots;
+    }
+    
 }
