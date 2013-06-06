@@ -29,6 +29,16 @@ public class PlayerUser {
         return this.myBoard.placeShip(startX, startY, direction, size);
     }
     
+    /**
+     * Take a shot at the enemy board.
+     * 
+     * @param x X-coordinate for shot
+     * @param y Y-coordinate for shot
+     * 
+     * @see battleship.domain.Board#shoot(int, int) 
+     * 
+     * @return  true if shot succesful, otherwise false
+     */
     public boolean shoot(int x, int y) {
         //this.input = new Scanner(System.in);
         
@@ -41,11 +51,6 @@ public class PlayerUser {
         return this.numShots;
     }
     
-    //public int getNumHits() {
-    //    return this.numHits;
-    //}
-    
-    // score == shots / hits
     public int getScore() {
         return (this.myBoard.getHeight() * this.myBoard.getWidth()) - this.numShots;
     }

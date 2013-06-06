@@ -3,6 +3,9 @@
  * and open the template in the editor.
  */
 package battleship.domain;
+import battleship.enums.BoardSize;
+import battleship.filehandler.FileHandler;
+import battleship.enums.Ship;
 import java.util.Scanner;
 
 /**

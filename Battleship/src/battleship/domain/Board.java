@@ -29,6 +29,9 @@ public class Board {
         
     }
     
+    /**
+     * Initiates all board cells to BLANK.
+     */    
     public void initBoard() {
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
@@ -37,6 +40,9 @@ public class Board {
         }
     }
     
+    /** 
+     *  Draws the board.
+     */
     public void drawBoard() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -55,18 +61,24 @@ public class Board {
         System.out.println("");
     }
     
+    /**
+     * Places a ship on the board.
+     * 
+     * Places a ship on the board by first checking that the coordinates are
+     * valid and that there are no other ships in the intended squares.
+     * 
+     * @param startX      starting X-coordinate for ship
+     * @param startY      starting Y-coordinate for ship
+     * @param orientation ship orientation
+     * @param size        ships size in squares
+     * 
+     * @see #checkPlacementCoords(int, int, int, int)
+     * 
+     * @return            return true if ship placed succesfully, otherwise false
+     */
     public boolean placeShip(int startX, int startY, int orientation, int size) {
-        // check starting coordinates
-        if (startX < 0 || startX >= this.width || startY < 0 || startY >= this.height) {
-            return false;
-        }
         
-        // check size
-        if (orientation == DIR_HORIZONTAL && startX + size > this.width) {
-            return false;
-        } else if (orientation == DIR_VERTICAL && startY + size > this.height) {
-            return false;
-        }
+        checkPlacementCoords(startX, startY, orientation, size);
         
         //check for other ships -- maybe needs to be better?
         int checkX = startX;
@@ -100,6 +112,41 @@ public class Board {
         return true;        
     }
     
+    /**
+     * Check that all intended coordinates for ship placement are on the board.
+     * 
+     * @param startX      starting X-coordinate for ship placement
+     * @param startY      starting Y-coordinate for ship placement
+     * @param orientation ship orientation
+     * @param size        ship size in squares
+     * 
+     * @return            true if all coordinates valid, otherwise false
+     */    
+    public boolean checkPlacementCoords(int startX, int startY, int orientation, int size) {
+        // check starting coordinates
+        if (startX < 0 || startX >= this.width || startY < 0 || startY >= this.height) {
+            return false;
+        }
+        
+        // check size
+        if (orientation == DIR_HORIZONTAL && startX + size > this.width) {
+            return false;
+        } else if (orientation == DIR_VERTICAL && startY + size > this.height) {
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Take a shot at the specified square
+     * 
+     * NOTE: shooting at a square that has already been shot at
+     * is considered legal and is not checked.
+     * 
+     * @param x X-coordinate for shot
+     * @param y Y-coordinate for shot
+     * @return  true if shot succesful, otherwise false
+     */
     public boolean shoot(int x, int y) {
         if (x < 0 || x > width) {
             return false;
@@ -130,6 +177,11 @@ public class Board {
         return board[y][x];
     }
     
+    /**
+     * Count how many squares on the board have a ship
+     * 
+     * @return number of squares with ships on the board 
+     */
     public int shipSquaresLeft() {
         int numShipsLeft = 0;
         for (int i = 0; i < height; i++) {

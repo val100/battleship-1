@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package battleship.domain;
+import battleship.enums.Ship;
 import java.util.Random;
 
 /**
