@@ -5,7 +5,8 @@
 package battleship.enums;
 
 /**
- *
+ * Enum class for the ships in the game.
+ * 
  * @author larg
  */
 public enum Ship {

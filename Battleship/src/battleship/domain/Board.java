@@ -5,7 +5,8 @@
 package battleship.domain;
 
 /**
- *
+ * This class represents the board on a game of battleship.
+ * 
  * @author larg
  */
 public class Board {
@@ -78,7 +79,9 @@ public class Board {
      */
     public boolean placeShip(int startX, int startY, int orientation, int size) {
         
-        checkPlacementCoords(startX, startY, orientation, size);
+        if (!checkPlacementCoords(startX, startY, orientation, size)) {
+            return false;
+        }
         
         //check for other ships -- maybe needs to be better?
         int checkX = startX;

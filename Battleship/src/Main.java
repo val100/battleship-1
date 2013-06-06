@@ -1,8 +1,10 @@
+import battleship.GUI.GUI;
 
 import battleship.domain.Board;
 import battleship.domain.Logic;
 import battleship.domain.PlayerComp;
 import battleship.domain.TargetBoard;
+import javax.swing.SwingUtilities;
 
 /*
  * To change this template, choose Tools | Templates
@@ -15,10 +17,14 @@ import battleship.domain.TargetBoard;
  */
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Battleship\n");
         
-        Logic logiikka = new Logic();
-        logiikka.startGame();
+        //System.out.println("Battleship\n");
+        
+        //Logic logiikka = new Logic();
+        //logiikka.startGame();
+        
+        GUI gui = new GUI();
+        SwingUtilities.invokeLater(gui);
         
 //        Board board = new Board(5,5);
 //        TargetBoard target = new TargetBoard(10,10);

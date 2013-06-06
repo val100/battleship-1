@@ -6,7 +6,8 @@ package battleship.domain;
 //import java.util.Scanner;
 
 /**
- *
+ * This class represents the User player.
+ * 
  * @author larg
  */
 public class PlayerUser {

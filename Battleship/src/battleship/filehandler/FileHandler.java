@@ -14,7 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * This class handles the file actions needed for the scoreboard.
+ * 
  * @author larg
  */
 public class FileHandler {
@@ -58,6 +59,13 @@ public class FileHandler {
         
     }
     
+    /**
+     * Write the score of a completed game to the scoreboard file.
+     * 
+     * @param name  Name of the user
+     * @param score Score of the user
+     * @return      true if write succesful, otherwise false
+     */
     public boolean writeScore(String name, int score) {
         Score newScore = new Score(score, name);
         scores.add(newScore);
