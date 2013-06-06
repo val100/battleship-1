@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import battleship.domain.Board;
+import battleship.domain.PlayerComp;
+import battleship.domain.PlayerUser;
 import battleship.domain.TargetBoard;
 import java.awt.GridLayout;
 
@@ -19,9 +21,17 @@ public class GUI implements Runnable {
     
     private JFrame frame;
     private Board userBoard;
+    private TargetBoard compBoard;
+    private PlayerComp comp;
+    private PlayerUser user;
     
     public GUI() {
         this.userBoard = new Board(10,10);
+        this.compBoard = new TargetBoard(10, 10);
+        this.comp = new PlayerComp(userBoard, compBoard);
+        this.user = new PlayerUser(userBoard, compBoard);
+        this.comp.placeShips();
+        this.user.shoot(4, 4);
     }
 
     @Override
@@ -40,7 +50,7 @@ public class GUI implements Runnable {
     private void createComponents(Container container) {
         container.setLayout(new GridLayout(1, 0, 15, 15));
         container.add(new BoardCanvas(userBoard));
-        container.add(new BoardCanvas(userBoard));
+        container.add(new BoardCanvas(compBoard));
     }
     
     public JFrame getFrame() {
