@@ -4,3 +4,8 @@
 27.5.2013 - 1h - Lisää luokkia, Enumeja
 28.5.2013 - 7h - Perustoiminnallisuutta, debuggausta
 30.5.2013 - 3h - Toimiva peli tekstimoodissa, testejä, päivitetty luokkakaavio, pistetaulukko
+03.6.2013 - 2h - Koodikatselmointi 1
+03.6.2013 - 3h - logiikkaa, javadoc alkuun (arvioitu jälkeenpäin)
+06.6.2013 - 4h - GUI alkuun yms. (arvioitu jälkeenpäin)
+10.6.2013 - 1h - koodikatselmointi 2
+10.6.2013 - 8h - refaktorointia, tekstimoodi erikseen, GUI:n rakentamista

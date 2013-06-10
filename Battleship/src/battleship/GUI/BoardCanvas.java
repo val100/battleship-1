@@ -8,7 +8,9 @@ import battleship.domain.Board;
 import battleship.domain.TargetBoard;
 import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -21,14 +23,22 @@ public class BoardCanvas extends JPanel {
     private int width;
     private int cellSize;
     
-    public BoardCanvas(Board userBoard) {
-        this.board = userBoard;
+    public BoardCanvas(Board board) {
+        this.board = board;
 //        this.target = target;
         this.height = board.getHeight();
         this.width = board.getWidth();
         this.cellSize = 20;
     }
 
+    public int getCellSize() {
+        return cellSize;
+    }
+
+    
+    
+    
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g); 
@@ -36,7 +46,7 @@ public class BoardCanvas extends JPanel {
         drawCells(g);
     }
 
-    private void drawGrid(Graphics g) {
+    protected void drawGrid(Graphics g) {
         g.setColor(Color.BLACK);
         for (int i = 0; i <= this.height; i++) {
             g.drawLine(i * cellSize, 0, i * cellSize, this.height * cellSize);

@@ -8,10 +8,12 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import battleship.domain.Board;
+import battleship.domain.Logic;
 import battleship.domain.PlayerComp;
 import battleship.domain.PlayerUser;
 import battleship.domain.TargetBoard;
 import java.awt.GridLayout;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -24,14 +26,17 @@ public class GUI implements Runnable {
     private TargetBoard compBoard;
     private PlayerComp comp;
     private PlayerUser user;
+    private Logic logic;
     
     public GUI() {
-        this.userBoard = new Board(10,10);
-        this.compBoard = new TargetBoard(10, 10);
-        this.comp = new PlayerComp(userBoard, compBoard);
-        this.user = new PlayerUser(userBoard, compBoard);
+        DialogBox askSize = new DialogBox();
+        this.logic = new Logic(askSize.askBoardSize());
+        this.userBoard = logic.getUserBoard();
+        this.compBoard = logic.getCompBoard();
+        this.comp = logic.getComp();
+        this.user = logic.getPlayer();
         this.comp.placeShips();
-        this.user.shoot(4, 4);
+        
     }
 
     @Override
@@ -48,9 +53,13 @@ public class GUI implements Runnable {
     }
 
     private void createComponents(Container container) {
-        container.setLayout(new GridLayout(1, 0, 15, 15));
-        container.add(new BoardCanvas(userBoard));
-        container.add(new BoardCanvas(compBoard));
+        container.setLayout(new GridLayout(1, 0, 50, 0));
+        BoardCanvas target = new BoardCanvas(compBoard);
+        BoardCanvas userCanvas = new BoardCanvas(userBoard);
+        //TargetCanvas targetCanvas = new TargetCanvas(user, comp, userCanvas, logic, compBoard);
+        container.add(target);
+        container.add(userCanvas);
+        frame.addMouseListener(new ClickListener(user, comp, userCanvas, target, logic));
     }
     
     public JFrame getFrame() {

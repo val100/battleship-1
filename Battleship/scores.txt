@@ -1,2 +1,3 @@
 80;koppakuoriainen
 45;poppeli
+79;Kapteeni
