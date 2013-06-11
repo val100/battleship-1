@@ -7,7 +7,9 @@ package battleship.domain;
 import static battleship.domain.Board.BOARD_BLANK;
 
 /**
- *
+ * This class extends the Board-class, so that the enemy board
+ * does not show it's ships.
+ * 
  * @author larg
  */
 public class TargetBoard extends Board {
@@ -24,9 +26,9 @@ public class TargetBoard extends Board {
                     System.out.print(".");
                 } else if (super.getBoard()[i][j] == BOARD_SHIP) {
                     //debug draw
-                    System.out.print("@");
-                    // real draw
-            //        System.out.print(".");
+                    //System.out.print("@");
+                    //real draw
+                    System.out.print(".");
                 } else if (super.getBoard()[i][j] == BOARD_HIT) {
                     System.out.print("X");
                 } else if (super.getBoard()[i][j] == BOARD_MISS) {

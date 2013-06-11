@@ -27,6 +27,7 @@ public class GUI implements Runnable {
     private PlayerComp comp;
     private PlayerUser user;
     private Logic logic;
+    private ClickListener clicker;
     
     public GUI() {
         DialogBox askSize = new DialogBox();
@@ -50,16 +51,18 @@ public class GUI implements Runnable {
 
         frame.pack();
         frame.setVisible(true);
+        clicker.placeUserShips();
     }
 
     private void createComponents(Container container) {
         container.setLayout(new GridLayout(1, 0, 50, 0));
-        BoardCanvas target = new BoardCanvas(compBoard);
+        BoardCanvas target = new TargetCanvas(compBoard);
         BoardCanvas userCanvas = new BoardCanvas(userBoard);
         //TargetCanvas targetCanvas = new TargetCanvas(user, comp, userCanvas, logic, compBoard);
         container.add(target);
         container.add(userCanvas);
-        frame.addMouseListener(new ClickListener(user, comp, userCanvas, target, logic));
+        this.clicker = new ClickListener(frame, user, comp, userCanvas, target, logic);
+        frame.addMouseListener(clicker);
     }
     
     public JFrame getFrame() {

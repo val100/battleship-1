@@ -5,71 +5,30 @@
 package battleship.GUI;
 
 import battleship.domain.Board;
-import battleship.domain.TargetBoard;
 import java.awt.Color;
 import java.awt.Graphics;
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 /**
- * This class is responsible for drawing the board in a GUI game of Battleship.
+ * This class extends BoardCanvas to draw the enemy board, i.e. not showing ships
  * 
  * @author larg
  */
-public class BoardCanvas extends JPanel {
+public class TargetCanvas extends BoardCanvas {
     private Board board;
-//    private TargetBoard target;
     private int height;
     private int width;
     private int cellSize;
     
-    public BoardCanvas(Board board) {
+    public TargetCanvas(Board board) {
+        super(board);
         this.board = board;
-//        this.target = target;
         this.height = board.getHeight();
         this.width = board.getWidth();
-        this.cellSize = 20;
+        this.cellSize = super.getCellSize();
     }
 
-    public int getCellSize() {
-        return cellSize;
-    }
-
-    
-    
-    
-    
     @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g); 
-        drawGrid(g);
-        drawCells(g);
-    }
-    
-    /**
-     * Draw a grid of cells.
-     * 
-     * @param g 
-     */
-    protected void drawGrid(Graphics g) {
-        g.setColor(Color.BLACK);
-        for (int i = 0; i <= this.height; i++) {
-            g.drawLine(i * cellSize, 0, i * cellSize, this.height * cellSize);
-        }
-        
-        for (int i = 0; i <= this.width; i++) {
-            g.drawLine(0, i * cellSize, this.width * cellSize, i * cellSize);
-        }
-    }
-    
-    /**
-     * Draw the cells according to their content.
-     * 
-     * @param g 
-     */
     protected void drawCells(Graphics g) {
-        
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
  
@@ -79,8 +38,8 @@ public class BoardCanvas extends JPanel {
                     g.fillRect((cellSize * j)+1, (cellSize * i)+1, cellSize-1, cellSize-1); 
                 }
                 if (cell == 1) {
-                    g.setColor(Color.black);
-                    g.fillRect((cellSize * j)+1, (cellSize * i)+1, cellSize, cellSize);
+                    g.setColor(Color.white);
+                    g.fillRect((cellSize * j)+1, (cellSize * i)+1, cellSize-1, cellSize-1);
                 }
                 if (cell == 2) {
                     g.setColor(Color.red);
@@ -95,9 +54,6 @@ public class BoardCanvas extends JPanel {
             }
         }
     }
-    
-    
-    
     
     
 }

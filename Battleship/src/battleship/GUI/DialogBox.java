@@ -10,7 +10,8 @@ import battleship.enums.Ship;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * A Class that makes the different SIMPLE dialogs for the GUI.
+ * 
  * @author larg
  */
 public class DialogBox {
@@ -21,6 +22,11 @@ public class DialogBox {
         this.questionBox = new JOptionPane();
     }
     
+    /**
+     * This method is used to ask the board size at the start of the game.
+     * 
+     * @return board size
+     */
     public BoardSize askBoardSize() {
         String input;
         int selection;
@@ -41,20 +47,16 @@ public class DialogBox {
             }    
         }
     }
-
-    public void askShipPlacement(Ship s, PlayerUser u, int size) {
-        int[] Xpossibilities = new int[size];
-        int[] Ypossibilities = new int[size];
-        for (int i = 0; i < size; i++) {
-            Xpossibilities[i] = i;
-            Ypossibilities[i] = i;
-        }  
+    
+    /**
+     * This method is used to ask the user's name to put on the scoreboard
+     * at the end of the game.
+     * 
+     * @return user name
+     */
+    public String askName() {
         String input;
-        while (true) {    
-                
-                input = questionBox.showInputDialog("Give starting coordinates for ship " + s.name() + "(length: " + s.getLength() + ")");                
-              
-       }                                       
-        
+        input = questionBox.showInputDialog("YOU WON!\nEnter your name:");
+        return input;
     }
 }

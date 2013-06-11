@@ -8,6 +8,7 @@ import battleship.domain.Logic;
 import battleship.domain.PlayerComp;
 import battleship.domain.PlayerUser;
 import battleship.enums.Ship;
+import java.awt.Frame;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -16,13 +17,15 @@ import java.awt.event.MouseListener;
  * @author larg
  */
 public class ClickListener implements MouseListener {
+    private Frame frame;
     private PlayerUser user;
     private PlayerComp comp;
     private BoardCanvas target;
     private BoardCanvas userBoard;
     private Logic logic;
 
-    public ClickListener(PlayerUser user, PlayerComp comp, BoardCanvas userBoard, BoardCanvas target, Logic logic) {
+    public ClickListener(Frame frame, PlayerUser user, PlayerComp comp, BoardCanvas userBoard, BoardCanvas target, Logic logic) {
+        this.frame = frame;
         this.user = user;
         this.comp = comp;        
         this.userBoard = userBoard;
@@ -49,6 +52,9 @@ public class ClickListener implements MouseListener {
             comp.shoot();
             target.repaint();
             userBoard.repaint();
+            if (logic.gameEnded()) {
+                endGame();
+            }
         //}
         
     }
@@ -73,11 +79,30 @@ public class ClickListener implements MouseListener {
         
     }
 
-    private void placeUserShips() {
+    public void placeUserShips() {
        for (Ship s : Ship.values()) {
-            DialogBox shipPlacement = new DialogBox();
-            shipPlacement.askShipPlacement(s, user, logic.getUserBoard().getHeight());
+           while (true) {
+                PlaceShipDialog dialog = new PlaceShipDialog(frame, true);
+                dialog.setSize(250, 120);
+                dialog.setVisible(true);
+                int[] shipCoords = dialog.getShip();
+                if (user.placeShip(shipCoords[0], shipCoords[1], shipCoords[2], s.getLength())) {
+                    userBoard.repaint();
+                    break;
+                }
+                
+
         }
     }
     
+}
+
+    private void endGame() {
+        if (logic.gameWon()) {
+            DialogBox askName = new DialogBox();
+            String name = askName.askName();
+            logic.saveScore(name);
+            
+        }
+    }
 }
