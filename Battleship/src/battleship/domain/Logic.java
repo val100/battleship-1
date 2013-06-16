@@ -73,4 +73,11 @@ public class Logic {
         fileHandler.printScore();
     }
     
+    public String getScoreString() {
+        String scores = fileHandler.getScores();
+        System.out.println(scores);
+        return scores;
+        
+    }
+    
 }

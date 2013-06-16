@@ -8,6 +8,7 @@ import java.awt.Frame;
 import java.awt.GridLayout;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -24,7 +25,7 @@ public class PlaceShipDialog extends JDialog {
     JTextField xCoordField = new JTextField();
     JTextField yCoordField = new JTextField();
     JTextField orientationField = new JTextField();    
-    int[] ship = new int[3];
+    int[] ship = {-1,-1,-1};
 
     public PlaceShipDialog(Frame owner, boolean modal) {
         super(owner, modal);
@@ -59,6 +60,7 @@ public class PlaceShipDialog extends JDialog {
 
             ship[1] = Integer.parseInt(yCoordField.getText());
             ship[2] = Integer.parseInt(orientationField.getText());
+
         } catch (Exception e) {
         }
         return ship;

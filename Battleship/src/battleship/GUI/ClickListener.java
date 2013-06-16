@@ -11,6 +11,7 @@ import battleship.enums.Ship;
 import java.awt.Frame;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JPanel;
 
 /**
  *
@@ -18,20 +19,21 @@ import java.awt.event.MouseListener;
  */
 public class ClickListener implements MouseListener {
     private Frame frame;
+    private JPanel panel;
     private PlayerUser user;
     private PlayerComp comp;
     private BoardCanvas target;
     private BoardCanvas userBoard;
     private Logic logic;
 
-    public ClickListener(Frame frame, PlayerUser user, PlayerComp comp, BoardCanvas userBoard, BoardCanvas target, Logic logic) {
+    public ClickListener(Frame frame, JPanel panel, PlayerUser user, PlayerComp comp, BoardCanvas userBoard, BoardCanvas target, Logic logic) {
         this.frame = frame;
+        this.panel = panel;
         this.user = user;
         this.comp = comp;        
         this.userBoard = userBoard;
         this.target = target;
         this.logic = logic;
-        //placeUserShips();
     }
     
     
@@ -41,7 +43,7 @@ public class ClickListener implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         //while (!logic.gameEnded()) {
             int x = (e.getX() / target.getCellSize());
-            int y = (e.getY() / target.getCellSize()-1);
+            int y = ((e.getY()-target.getCellSize()) / target.getCellSize()-1);
 
             //System.out.println("klikattiin solua: " + x + ", " + y);
             try {
@@ -102,6 +104,9 @@ public class ClickListener implements MouseListener {
             DialogBox askName = new DialogBox();
             String name = askName.askName();
             logic.saveScore(name);
+            String scores = logic.getScoreString();
+            DialogBox scoreBoard = new DialogBox();
+            scoreBoard.showScore(scores);
             
         }
     }

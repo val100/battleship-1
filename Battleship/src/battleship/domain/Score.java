@@ -8,7 +8,7 @@ package battleship.domain;
  *
  * @author larg
  */
-public class Score {
+public class Score implements Comparable<Score> {
     private int score;
     private String name;
 
@@ -23,6 +23,11 @@ public class Score {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public int compareTo(Score o) {
+        return o.getScore() - this.getScore();
     }
     
     

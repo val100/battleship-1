@@ -59,4 +59,8 @@ public class DialogBox {
         input = questionBox.showInputDialog("YOU WON!\nEnter your name:");
         return input;
     }
+    
+    public void showScore(String scoreString) {
+        questionBox.showMessageDialog(questionBox, scoreString);
+    }
 }

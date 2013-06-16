@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,6 +60,19 @@ public class FileHandler {
         
     }
     
+    public String getScores() {
+        readScore();
+        String scoreString = "Top-10 scores:\n";
+        int position = 1;
+        
+        for (Score sc : scores) {
+            if (position < 11) {
+                scoreString += "" + position + ")  " + sc.getName() + " - " + sc.getScore() + "\n";
+                position++;
+            }
+        }
+        return scoreString;
+    }
     /**
      * Write the score of a completed game to the scoreboard file.
      * 
@@ -69,6 +83,7 @@ public class FileHandler {
     public boolean writeScore(String name, int score) {
         Score newScore = new Score(score, name);
         scores.add(newScore);
+        Collections.sort(scores);
    
         try {
             this.filewriter = new FileWriter("scores.txt");

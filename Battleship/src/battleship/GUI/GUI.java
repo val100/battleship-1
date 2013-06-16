@@ -12,7 +12,11 @@ import battleship.domain.Logic;
 import battleship.domain.PlayerComp;
 import battleship.domain.PlayerUser;
 import battleship.domain.TargetBoard;
+import battleship.enums.BoardSize;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -20,7 +24,7 @@ import javax.swing.border.EmptyBorder;
  * @author larg
  */
 public class GUI implements Runnable {
-    
+    private BoardSize boardsize;
     private JFrame frame;
     private Board userBoard;
     private TargetBoard compBoard;
@@ -31,7 +35,8 @@ public class GUI implements Runnable {
     
     public GUI() {
         DialogBox askSize = new DialogBox();
-        this.logic = new Logic(askSize.askBoardSize());
+        this.boardsize = askSize.askBoardSize();
+        this.logic = new Logic(this.boardsize);
         this.userBoard = logic.getUserBoard();
         this.compBoard = logic.getCompBoard();
         this.comp = logic.getComp();
@@ -43,26 +48,53 @@ public class GUI implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Battleship");
-        frame.setPreferredSize(new Dimension(800, 400));
-
+//        if (this.boardsize == BoardSize.HARD) {
+//            frame.setPreferredSize(new Dimension(700, 380));
+//        }
+        setWindowSize();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         createComponents(frame.getContentPane());
-
         frame.pack();
         frame.setVisible(true);
         clicker.placeUserShips();
     }
 
     private void createComponents(Container container) {
-        container.setLayout(new GridLayout(1, 0, 50, 0));
+        container.add(createUpperPanel(), BorderLayout.NORTH);
         BoardCanvas target = new TargetCanvas(compBoard);
         BoardCanvas userCanvas = new BoardCanvas(userBoard);
-        //TargetCanvas targetCanvas = new TargetCanvas(user, comp, userCanvas, logic, compBoard);
-        container.add(target);
-        container.add(userCanvas);
-        this.clicker = new ClickListener(frame, user, comp, userCanvas, target, logic);
+        JPanel panel = createBoardPanel(target, userCanvas);
+        container.add(panel);
+        
+        this.clicker = new ClickListener(frame, panel, user, comp, userCanvas, target, logic);
         frame.addMouseListener(clicker);
+    }
+    
+    private JPanel createUpperPanel() {
+        JPanel panel = new JPanel(new GridLayout(1, 2));
+        panel.add(new JLabel("ENEMY BOARD"));
+        panel.add(new JLabel("YOUR BOARD"));
+        return panel;
+    }
+    
+    private JPanel createBoardPanel(BoardCanvas target, BoardCanvas userCanvas) {
+        JPanel panel = new JPanel(new GridLayout(1, 2));
+        panel.add(target);
+        panel.add(userCanvas);
+        return panel;
+        
+    }
+    
+    public void setWindowSize() {
+        if (this.boardsize == BoardSize.HARD) {
+            frame.setPreferredSize(new Dimension(700, 380));
+        } else if (this.boardsize == BoardSize.NORMAL) {
+            frame.setPreferredSize(new Dimension(500, 300));
+        } else if (this.boardsize == BoardSize.EASY) {
+            frame.setPreferredSize(new Dimension(420, 230));
+        } else {
+            frame.setPreferredSize(new Dimension(700, 380));
+        }
     }
     
     public JFrame getFrame() {
