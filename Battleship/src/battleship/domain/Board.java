@@ -141,7 +141,7 @@ public class Board {
      *
      * @param x X-coordinate for shot
      * @param y Y-coordinate for shot
-     * @return true if shot succesful, otherwise false
+     * @return true if shot successful, otherwise false
      */
     public boolean shoot(int x, int y) {
         if (x < 0 || x > width) {

@@ -1,6 +1,7 @@
 45;puppe
 43;Hermanni
 36;Herr Kapitan
+32;Stalin
 29;Gregor
 23;Kapteeni
 22;dfgh

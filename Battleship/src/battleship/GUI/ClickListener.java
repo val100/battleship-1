@@ -43,15 +43,17 @@ public class ClickListener implements MouseListener {
         int x = (e.getX() / target.getCellSize());
         int y = ((e.getY() - target.getCellSize()) / target.getCellSize() - 1);
         //System.out.println("klikattiin solua: " + x + ", " + y);
-        try {
-            user.shoot(x, y);
-        } catch (Exception ex) {
-        }
-        comp.shoot();
-        target.repaint();
-        userBoard.repaint();
-        if (logic.gameEnded()) {
-            endGame();
+//        try {
+//            user.shoot(x, y);
+//        } catch (Exception ex) {
+//        }
+        if (user.shoot(x, y)) {
+            comp.shoot();
+            target.repaint();
+            userBoard.repaint();
+            if (logic.gameEnded()) {
+                endGame();
+            }
         }
     }
 
