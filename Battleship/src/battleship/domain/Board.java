@@ -6,33 +6,30 @@ package battleship.domain;
 
 /**
  * This class represents the board on a game of battleship.
- * 
+ *
  * @author larg
  */
 public class Board {
+
     final static int BOARD_BLANK = 0;
     final static int BOARD_SHIP = 1;
     final static int BOARD_HIT = 2;
     final static int BOARD_MISS = 3;
-    
     final static int DIR_HORIZONTAL = 0;
     final static int DIR_VERTICAL = 1;
-    
     private int height;
     private int width;
     private int[][] board;
 
     public Board(int height, int width) {
-        
         this.height = height;
         this.width = width;
         this.board = new int[height][width];
-        
     }
-    
+
     /**
      * Initiates all board cells to BLANK.
-     */    
+     */
     public void initBoard() {
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
@@ -40,9 +37,9 @@ public class Board {
             }
         }
     }
-    
-    /** 
-     *  Draws the board.
+
+    /**
+     * Draws the board.
      */
     public void drawBoard() {
         for (int i = 0; i < height; i++) {
@@ -61,34 +58,30 @@ public class Board {
         }
         System.out.println("");
     }
-    
+
     /**
      * Places a ship on the board.
-     * 
+     *
      * Places a ship on the board by first checking that the coordinates are
      * valid and that there are no other ships in the intended squares.
-     * 
-     * @param startX      starting X-coordinate for ship
-     * @param startY      starting Y-coordinate for ship
+     *
+     * @param startX starting X-coordinate for ship
+     * @param startY starting Y-coordinate for ship
      * @param orientation ship orientation
-     * @param size        ships size in squares
-     * 
+     * @param size ships size in squares
+     *
      * @see #checkPlacementCoords(int, int, int, int)
-     * 
-     * @return            return true if ship placed succesfully, otherwise false
+     *
+     * @return return true if ship placed succesfully, otherwise false
      */
     public boolean placeShip(int startX, int startY, int orientation, int size) {
-        
         if (!checkPlacementCoords(startX, startY, orientation, size)) {
             return false;
         }
-        
         //check for other ships -- maybe needs to be better?
         int checkX = startX;
         int checkY = startY;
         for (int i = 0; i < size; i++) {
-            
-            
             if (board[checkY][checkX] == BOARD_SHIP) {
                 return false;
             }
@@ -98,7 +91,7 @@ public class Board {
                 checkY++;
             }
         }
-        
+
         // place ship
         for (int i = 0; i < size; i++) {
             if (board[startY][startX] == BOARD_SHIP) {
@@ -111,26 +104,26 @@ public class Board {
                 startY++;
             }
         }
-        
-        return true;        
+
+        return true;
     }
-    
+
     /**
      * Check that all intended coordinates for ship placement are on the board.
-     * 
-     * @param startX      starting X-coordinate for ship placement
-     * @param startY      starting Y-coordinate for ship placement
+     *
+     * @param startX starting X-coordinate for ship placement
+     * @param startY starting Y-coordinate for ship placement
      * @param orientation ship orientation
-     * @param size        ship size in squares
-     * 
-     * @return            true if all coordinates valid, otherwise false
-     */    
+     * @param size ship size in squares
+     *
+     * @return true if all coordinates valid, otherwise false
+     */
     public boolean checkPlacementCoords(int startX, int startY, int orientation, int size) {
         // check starting coordinates
         if (startX < 0 || startX >= this.width || startY < 0 || startY >= this.height) {
             return false;
         }
-        
+
         // check size
         if (orientation == DIR_HORIZONTAL && startX + size > this.width) {
             return false;
@@ -139,16 +132,16 @@ public class Board {
         }
         return true;
     }
-    
+
     /**
      * Take a shot at the specified square
-     * 
-     * NOTE: shooting at a square that has already been shot at
-     * is considered legal and is not checked.
-     * 
+     *
+     * NOTE: shooting at a square that has already been shot at is considered
+     * legal and is not checked.
+     *
      * @param x X-coordinate for shot
      * @param y Y-coordinate for shot
-     * @return  true if shot succesful, otherwise false
+     * @return true if shot succesful, otherwise false
      */
     public boolean shoot(int x, int y) {
         if (x < 0 || x > width) {
@@ -163,7 +156,7 @@ public class Board {
         }
         return true;
     }
-    
+
     public int getHeight() {
         return height;
     }
@@ -171,19 +164,19 @@ public class Board {
     public int getWidth() {
         return width;
     }
-    
+
     public int[][] getBoard() {
         return this.board;
     }
-    
+
     public int cellInfo(int x, int y) {
         return board[y][x];
     }
-    
+
     /**
      * Count how many squares on the board have a ship
-     * 
-     * @return number of squares with ships on the board 
+     *
+     * @return number of squares with ships on the board
      */
     public int shipSquaresLeft() {
         int numShipsLeft = 0;

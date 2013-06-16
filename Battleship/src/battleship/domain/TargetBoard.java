@@ -7,17 +7,17 @@ package battleship.domain;
 import static battleship.domain.Board.BOARD_BLANK;
 
 /**
- * This class extends the Board-class, so that the enemy board
- * does not show it's ships.
- * 
+ * This class extends the Board-class, so that the enemy board does not show
+ * it's ships.
+ *
  * @author larg
  */
 public class TargetBoard extends Board {
-    
-    public TargetBoard(int height, int width) {        
-        super(height, width);        
+
+    public TargetBoard(int height, int width) {
+        super(height, width);
     }
-    
+
     @Override
     public void drawBoard() {
         for (int i = 0; i < super.getHeight(); i++) {

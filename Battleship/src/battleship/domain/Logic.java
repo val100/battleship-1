@@ -3,22 +3,25 @@
  * and open the template in the editor.
  */
 package battleship.domain;
+
 import battleship.enums.BoardSize;
 import battleship.filehandler.FileHandler;
 import battleship.enums.Ship;
 import java.util.Scanner;
 
 /**
+ * This class groups together the essential classes for game functionality and
+ * handles their initialization and game end status
  *
  * @author larg
  */
 public class Logic {
+
     private Board userBoard;
     private TargetBoard compBoard;
     private PlayerUser player;
     private PlayerComp comp;
     private FileHandler fileHandler;
-    //private Scanner input;
     private boolean gameWon;
 
     public Logic(BoardSize size) {
@@ -31,18 +34,23 @@ public class Logic {
         this.fileHandler = new FileHandler();
         fileHandler.readScore();
         gameWon = false;
-    }    
-   
+    }
+
+    /**
+     * Checks the both boards' cells for any remaining ships and sets gameWon to
+     * true if the player has won.
+     *
+     * @return true if game has ended, otherwise false
+     */
     public boolean gameEnded() {
-        if (compBoard.shipSquaresLeft() == 0) {                       
+        if (compBoard.shipSquaresLeft() == 0) {
             gameWon = true;
             return true;
-        
         } else if (userBoard.shipSquaresLeft() == 0) {
             return true;
         }
         return false;
-    }    
+    }
 
     public PlayerComp getComp() {
         return comp;
@@ -63,21 +71,14 @@ public class Logic {
     public boolean gameWon() {
         return gameWon;
     }
-    
+
     public void saveScore(String name) {
         fileHandler.writeScore(name, player.getScore());
     }
-    
-    public void showScore() {
-        fileHandler.readScore();
-        fileHandler.printScore();
-    }
-    
+
     public String getScoreString() {
         String scores = fileHandler.getScores();
-        System.out.println(scores);
+        //System.out.println(scores);
         return scores;
-        
     }
-    
 }

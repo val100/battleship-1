@@ -20,7 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 /**
- *
+ * This class handles the different classes needed for the GUI.
+ * 
  * @author larg
  */
 public class GUI implements Runnable {
@@ -48,9 +49,6 @@ public class GUI implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Battleship");
-//        if (this.boardsize == BoardSize.HARD) {
-//            frame.setPreferredSize(new Dimension(700, 380));
-//        }
         setWindowSize();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         createComponents(frame.getContentPane());
@@ -70,6 +68,11 @@ public class GUI implements Runnable {
         frame.addMouseListener(clicker);
     }
     
+    /**
+     * Create the upper panel with board labels.
+     * 
+     * @return JPanel with text labels
+     */
     private JPanel createUpperPanel() {
         JPanel panel = new JPanel(new GridLayout(1, 2));
         panel.add(new JLabel("ENEMY BOARD"));
@@ -77,6 +80,13 @@ public class GUI implements Runnable {
         return panel;
     }
     
+    /**
+     * Create the panel for the boards.
+     * 
+     * @param target
+     * @param userCanvas
+     * @return JPanel with boards 
+     */
     private JPanel createBoardPanel(BoardCanvas target, BoardCanvas userCanvas) {
         JPanel panel = new JPanel(new GridLayout(1, 2));
         panel.add(target);
@@ -85,6 +95,9 @@ public class GUI implements Runnable {
         
     }
     
+    /**
+     * Sets the window size according to selected board size
+     */
     public void setWindowSize() {
         if (this.boardsize == BoardSize.HARD) {
             frame.setPreferredSize(new Dimension(700, 380));

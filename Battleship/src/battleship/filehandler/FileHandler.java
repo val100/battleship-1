@@ -33,7 +33,11 @@ public class FileHandler {
     }
     
     
-    
+    /**
+     * Read scores from file to ArrayList of Scores
+     * 
+     * @return true if read successful, otherwise false 
+     */
     public boolean readScore() {
         try {
             this.reader = new Scanner(scoreBoard);
@@ -51,15 +55,13 @@ public class FileHandler {
         return true;
     }
     
-    public void printScore() {
-        int position = 1;
-        for (Score sc : scores) {
-            System.out.println(position + "\t" + sc.getScore() + "\t" + sc.getName());
-            position++;
-        }
-        
-    }
     
+    
+    /**
+     * This method makes a string from the top 10 scores.
+     * 
+     * @return String of top 10 scores
+     */
     public String getScores() {
         readScore();
         String scoreString = "Top-10 scores:\n";
@@ -83,8 +85,7 @@ public class FileHandler {
     public boolean writeScore(String name, int score) {
         Score newScore = new Score(score, name);
         scores.add(newScore);
-        Collections.sort(scores);
-   
+        Collections.sort(scores);  
         try {
             this.filewriter = new FileWriter("scores.txt");
             for (Score sc : scores) {
@@ -95,8 +96,7 @@ public class FileHandler {
         } catch (IOException ex) {
             Logger.getLogger(FileHandler.class.getName()).log(Level.SEVERE, null, ex);
             return false;
-        }
-        
+        }        
         return true;
     }
 }

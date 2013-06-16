@@ -5,10 +5,12 @@
 package battleship.domain;
 
 /**
+ * This class is used to represent the scores on the scoreboard.
  *
  * @author larg
  */
 public class Score implements Comparable<Score> {
+
     private int score;
     private String name;
 
@@ -29,7 +31,4 @@ public class Score implements Comparable<Score> {
     public int compareTo(Score o) {
         return o.getScore() - this.getScore();
     }
-    
-    
-    
 }

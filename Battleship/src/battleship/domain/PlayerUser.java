@@ -3,21 +3,18 @@
  * and open the template in the editor.
  */
 package battleship.domain;
-//import java.util.Scanner;
 
 /**
  * This class represents the User player.
- * 
+ *
  * @author larg
  */
 public class PlayerUser {
-    
+
     private Board myBoard;
     private TargetBoard compBoard;
     private int numShots;
     private int numHits;
-  //  private String name;
-    //private Scanner input;
 
     public PlayerUser(Board myBoard, TargetBoard compBoard) {
         this.myBoard = myBoard;
@@ -25,33 +22,31 @@ public class PlayerUser {
         this.numShots = 0;
         this.numHits = 0;
     }
-    
+
     public boolean placeShip(int startX, int startY, int direction, int size) {
         return this.myBoard.placeShip(startX, startY, direction, size);
     }
-    
+
     /**
      * Take a shot at the enemy board.
-     * 
+     *
      * @param x X-coordinate for shot
      * @param y Y-coordinate for shot
-     * 
-     * @see battleship.domain.Board#shoot(int, int) 
-     * 
-     * @return  true if shot succesful, otherwise false
+     *
+     * @see battleship.domain.Board#shoot(int, int)
+     *
+     * @return true if shot successful, otherwise false
      */
     public boolean shoot(int x, int y) {
-        //this.input = new Scanner(System.in);
-        
         boolean success = this.compBoard.shoot(x, y);
         this.numShots++;
         return success;
     }
-    
+
     public int getNumShots() {
         return this.numShots;
     }
-    
+
     public int getScore() {
         return (this.myBoard.getHeight() * this.myBoard.getWidth()) - this.numShots;
     }

@@ -14,10 +14,12 @@ import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 
 /**
+ * This class handles the mouse action of the GUI
  *
  * @author larg
  */
 public class ClickListener implements MouseListener {
+
     private Frame frame;
     private JPanel panel;
     private PlayerUser user;
@@ -30,60 +32,52 @@ public class ClickListener implements MouseListener {
         this.frame = frame;
         this.panel = panel;
         this.user = user;
-        this.comp = comp;        
+        this.comp = comp;
         this.userBoard = userBoard;
         this.target = target;
         this.logic = logic;
     }
-    
-    
-    
-    
+
     @Override
     public void mouseClicked(MouseEvent e) {
-        //while (!logic.gameEnded()) {
-            int x = (e.getX() / target.getCellSize());
-            int y = ((e.getY()-target.getCellSize()) / target.getCellSize()-1);
-
-            //System.out.println("klikattiin solua: " + x + ", " + y);
-            try {
-                user.shoot(x, y);
-            } catch (Exception ex) {
-                
-            }    
-            comp.shoot();
-            target.repaint();
-            userBoard.repaint();
-            if (logic.gameEnded()) {
-                endGame();
-            }
-        //}
-        
+        int x = (e.getX() / target.getCellSize());
+        int y = ((e.getY() - target.getCellSize()) / target.getCellSize() - 1);
+        //System.out.println("klikattiin solua: " + x + ", " + y);
+        try {
+            user.shoot(x, y);
+        } catch (Exception ex) {
+        }
+        comp.shoot();
+        target.repaint();
+        userBoard.repaint();
+        if (logic.gameEnded()) {
+            endGame();
+        }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        
     }
-
+    
+    /**
+     * This method handles the dialog action for placing the
+     * user's ships on the board.
+     */
     public void placeUserShips() {
-       for (Ship s : Ship.values()) {
-           while (true) {
+        for (Ship s : Ship.values()) {
+            while (true) {
                 PlaceShipDialog dialog = new PlaceShipDialog(frame, true);
                 dialog.setSize(250, 120);
                 dialog.setVisible(true);
@@ -92,13 +86,13 @@ public class ClickListener implements MouseListener {
                     userBoard.repaint();
                     break;
                 }
-                
-
+            }
         }
     }
     
-}
-
+    /**
+     * This method handles endgame dialogs.
+     */
     private void endGame() {
         if (logic.gameWon()) {
             DialogBox askName = new DialogBox();
@@ -107,7 +101,6 @@ public class ClickListener implements MouseListener {
             String scores = logic.getScoreString();
             DialogBox scoreBoard = new DialogBox();
             scoreBoard.showScore(scores);
-            
         }
     }
 }

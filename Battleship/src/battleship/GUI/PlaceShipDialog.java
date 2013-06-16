@@ -12,9 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- * This class handles the dialog for placing the user's ship on the board
- * at the start of the game.
- * 
+ * This class handles the dialog for placing the user's ship on the board at the
+ * start of the game.
+ *
  * @author larg
  */
 public class PlaceShipDialog extends JDialog {
@@ -24,8 +24,8 @@ public class PlaceShipDialog extends JDialog {
     JLabel labelO = new JLabel("Orientation");
     JTextField xCoordField = new JTextField();
     JTextField yCoordField = new JTextField();
-    JTextField orientationField = new JTextField();    
-    int[] ship = {-1,-1,-1};
+    JTextField orientationField = new JTextField();
+    int[] ship = {-1, -1, -1};
 
     public PlaceShipDialog(Frame owner, boolean modal) {
         super(owner, modal);
@@ -45,14 +45,13 @@ public class PlaceShipDialog extends JDialog {
         this.add(labelO);
         this.add(orientationField);
     }
-    
+
     /**
      * Extract user inputted fields for ship placement from dialog box.
-     * 
-     * @return int[] of the field; values are (in order):
-     *      int[0] - starting X coordinate for ship
-     *      int[1] - starting Y coordinate for ship
-     *      int[2] - ship orientation
+     *
+     * @return int[] of the field; values are (in order): int[0] - starting X
+     * coordinate for ship int[1] - starting Y coordinate for ship int[2] - ship
+     * orientation
      */
     public int[] getShip() {
         try {
