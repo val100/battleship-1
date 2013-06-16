@@ -4,9 +4,7 @@
  */
 package battleship.GUI;
 
-import battleship.domain.PlayerUser;
 import battleship.enums.BoardSize;
-import battleship.enums.Ship;
 import javax.swing.JOptionPane;
 
 /**
@@ -60,6 +58,10 @@ public class DialogBox {
         return input;
     }
 
+    public void scoreError(String errorString) {
+        questionBox.showMessageDialog(questionBox, errorString);
+    }
+    
     public void showScore(String scoreString) {
         questionBox.showMessageDialog(questionBox, scoreString);
     }

@@ -11,6 +11,7 @@
 20;Nelson
 19;Sailorman
 18;spacemonkey
+18;Upottaja
 16;Rumpel
 16;Napoleon
 14;Horatio

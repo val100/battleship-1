@@ -73,8 +73,8 @@ public class Logic {
         return gameWon;
     }
 
-    public void saveScore(String name) {
-        fileHandler.writeScore(name, player.getScore());
+    public boolean saveScore(String name) {
+        return fileHandler.writeScore(name, player.getScore());
     }
 
     public String getScoreString() {

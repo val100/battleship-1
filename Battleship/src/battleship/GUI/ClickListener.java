@@ -95,7 +95,10 @@ public class ClickListener implements MouseListener {
         if (logic.gameWon()) {
             DialogBox askName = new DialogBox();
             String name = askName.askName();
-            logic.saveScore(name);
+            if (!logic.saveScore(name)) {
+                DialogBox error = new DialogBox();
+                error.scoreError("There was an error saving your score. SORRY!");
+            }
             String scores = logic.getScoreString();
             DialogBox scoreBoard = new DialogBox();
             scoreBoard.showScore(scores);

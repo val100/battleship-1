@@ -179,7 +179,12 @@ public class TextMode {
             System.out.println("Your score was: " + logic.getPlayer().getScore());
             System.out.print("Give your name: ");
             String name = input.nextLine();
-            logic.saveScore(name);
+            if (!logic.saveScore(name)) {
+                System.out.println("There was an error saving your score. SORRY!");
+            } else {
+                System.out.println("Score saved!\n");
+            }
+            
         } else {
             System.out.println("YOU LOSE");
         }
