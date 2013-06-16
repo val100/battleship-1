@@ -18,7 +18,7 @@ public class Logic {
     private PlayerUser player;
     private PlayerComp comp;
     private FileHandler fileHandler;
-    private Scanner input;
+    //private Scanner input;
     private boolean gameWon;
 
     public Logic(BoardSize size) {
