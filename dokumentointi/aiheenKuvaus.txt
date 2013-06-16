@@ -2,7 +2,7 @@ Aiheen kuvaus
 
 Aihe: Laivanupotus-peli
 Toteutetaan versio laivanupotus-pelistä, jossa ihmispelaaja pelaa tietokonetta
-vastaan erän laivanupotusta. Peli käydään 10x10 ruudun kentällä, jolle pelaaja 
+vastaan erän laivanupotusta. Peli käydään valitun kokoisella kentällä, jolle pelaaja 
 sijoittaa laivastonsa. Tietokone sijoittaa omat laivansa vastaavaan ruudukkoon. 
 Tämän jälkeen peli käynnistyy. Pelissä pelaaja ja tietokone vuorotellen 
 pommittavat yhtä ruutua kerrallaan yrittäen osua vastustajan laivoihin. Pelin 
@@ -14,9 +14,11 @@ yhteyteen nimimerkin.
 
 Pelille toteutetaan graafinen käyttöliittymä.
 
-Pelissä on valittavissa muutama eri koko pelilaudalle (tarkentuu)
+Pelissä on valittavissa kolme eri kokoa pelilaudalle: 8 x 8 ruutua, 10 x 10
+ruutua ja 15 x 15 ruutua.
 
-(Laajennuksena ehkä erilaisia aseita käyttöön?)
+(Laajennuksena ehkä erilaisia aseita käyttöön? -- ehkä tulevaisuudessa, nyt
+ei ehdi)
 
 Pelin laivasto:
 1 x Lentotukialus: 1x5 ruutua
@@ -24,11 +26,19 @@ Pelin laivasto:
 2 x Hävittäjä: 1x3 ruutua
 2 x Partioalus: 1x2 ruutua
 
-Käyttäjät: 1 pelaaja, joka voi tunnistautua nimimerkillä.
+Käyttäjät: 1 pelaaja
 
 Käyttäjän toiminnot: 
-- Nimimerkin syöttö
 - Laivan asetus
 - Ampuminen kohdetauluun
-- Pelin lopetus
-- Lopputuloksen tallentaminen
+- Pelin lopetus (X:ää painamalla)
+- Lopputuloksen tallentaminen nimimerkillä
+
+Mitä piti tehdä, muttei ehtinyt (eli pisteenpudotuslista): 
+* Kunnollinen luuppi pelitoiminnolle, jotta uuden pelin voisi aloittaa 
+  käynnistämättä koko ohjelmaa uudestaan (ISOIN MIINUS :( )
+* Valikkorakenne (GUI)
+* Koordinaattien merkintä (GUI)
+* Kokonaan tuhottu vastustajan laiva merkitään ruudukkoon eri tavalla
+* Kauneutta lisää (GUI)
+* Refaktorointia rutkasti

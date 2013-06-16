@@ -42,7 +42,6 @@ public class GUI implements Runnable {
         this.compBoard = logic.getCompBoard();
         this.comp = logic.getComp();
         this.user = logic.getPlayer();
-        this.comp.placeShips();
         
     }
 

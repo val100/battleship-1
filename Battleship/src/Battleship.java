@@ -19,13 +19,29 @@ import javax.swing.SwingUtilities;
 public class Battleship {
     public static void main(String[] args) {
         
-
+        if (args == null || args.length == 0) {
+            GUI gui = new GUI();
+            SwingUtilities.invokeLater(gui);
+        } else if (args[0].equalsIgnoreCase("-t")) {
+            TextMode text = new TextMode();
+            text.startGame();
+        } else {
+            System.out.println("Argument '-t': textmode\nNo argument: graphics");
+            System.exit(0);
+        }
+//        if (!args[0].isEmpty() && args[0].equalsIgnoreCase("-t")) {
+//            TextMode text = new TextMode();
+//            text.startGame();
+//        } else {
+//            GUI gui = new GUI();
+//            SwingUtilities.invokeLater(gui);
+//        }
         //TextMode text = new TextMode();
         //text.startGame();
        
         
-        GUI gui = new GUI();
-        SwingUtilities.invokeLater(gui);
+        //GUI gui = new GUI();
+        
         
 
     }

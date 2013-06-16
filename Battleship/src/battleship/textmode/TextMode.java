@@ -63,7 +63,6 @@ public class TextMode {
      * Basic game loop in text mode.
      */
     public void startGame() {
-        logic.getComp().placeShips();
         userPlaceShips();
         while (true) {
             if (logic.gameEnded()) {
@@ -98,10 +97,10 @@ public class TextMode {
                 int y = getYCoord();
                 System.out.print("Give orientation (0 - horizontal, 1 - vertical): ");
                 int orientation = getIntInput();
-                if (orientation < 0 || orientation > 1) {
-                    System.out.println("Invalid orientation! try again!");
-                    continue;
-                }
+//                if (orientation < 0 || orientation > 1) {
+//                    System.out.println("Invalid orientation! try again!");
+//                    continue;
+//                }
                 if (!logic.getUserBoard().placeShip(x, y, orientation, s.getLength())) {
                     System.out.println("invalid selection! try again");
                     continue;

@@ -31,6 +31,7 @@ public class Logic {
         this.compBoard.initBoard();
         this.player = new PlayerUser(userBoard, compBoard);
         this.comp = new PlayerComp(userBoard, compBoard);
+        this.comp.placeShips();
         this.fileHandler = new FileHandler();
         fileHandler.readScore();
         gameWon = false;

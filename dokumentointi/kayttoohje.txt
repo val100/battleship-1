@@ -1,0 +1,63 @@
+Battleship - käyttöohje
+
+Battleship on perinteinen laivanupotuspeli, jota pelataan tietokonetta
+vastaan. Pelistä on olemassa sekä graafinen että tekstiversio. 
+
+Perustietoa itse pelistä ks. http://fi.wikipedia.org/wiki/Laivanupotus
+
+Pelissä on valittavissa kolme eri vaikeustasoa, nämä ovat:
+ * Helppo   - 8 x 8 ruudun pelikenttä
+ * Normaali - 10 x 10 ruudun pelikenttä
+ * Vaikea   - 15 x 15 ruudun pelikenttä
+
+Tässä peliversiossa on käytössä seuraanlainen laivasto:
+ * 1 x Lentotukialus (5 ruutua)
+ * 1 x Risteilijä (4 ruutua)
+ * 2 x Hävittäjä (3 ruutua)
+ * 2 x Partiovene (2 ruutua)
+
+*** Käynnistys ***
+
+Käynnistä ohjelma komentoriviltä kirjoittamalla:
+
+-Graafinen versio: "java -jar Battleship.jar"
+-Tekstiversio: "java -jar Battleship.jar -t"
+
+*** Pelin kulku ***
+
+Kun peli on käynnistetty valitaan ensin haluttu vaikeustaso (ks.yllä).
+Kun vaikeustaso on valittu, tulee sinun sijoittaa laivasi ruudukolle.
+Laivat käydäänläpi suurimmasta pienimpään ja jokaisen laivan kohdalla sinun
+tulee syöttää seuraavat tiedot:
+
+ * alkukoordinaatti x-akselilla (vaaka)
+ * alkukoordinaatti y-akselilla (pysty)
+ * suunta: 0 tarkoittaa vaakasuuntaa, 1 pystysuuntaa
+
+ HUOMAA, ETTÄ KOORDINAATISTO ALKAA NOLLASTA!
+
+Tämän jälkeen varsinainen peli alkaa. Pelissä jokaisella vuorolla pääset
+ampumaan vastustajan ruudukkoon yrittäen osua laivoihin. Peli päättyy, kun
+jomman kumman pelaajan kaikki laivat on tuhottu. Mikäli voitit pelin, voit
+syöttää nimimerkkisi tulosten tallennusta varten. Lopuksi näet 10 parasta
+suoritusta.
+
+*** Ruudukon merkkien selitys ***
+
+Tekstiversio:
+ . - tyhjä ruutu (oma lauta) tai ruutu johon ei ole vielä ammuttu (vastustajan lauta)
+ # - laiva (oma lauta)
+ X - osuma
+ O - huti
+
+Graafinen versio:
+ valkea   - tyhjä ruutu (oma lauta) tai ruutu johon ei ole vielä ammuttu (vastustajan lauta)
+ musta    - laiva (oma lauta)
+ punainen - osuma
+ sininen  - huti
+
+Huom! Kumpikin pelaajista voi ampua samaan ruutuun useita kertoja (vaikkei
+tämä ehkä ole kovin viisasta). Tällöin mahdollisesta osumastakin tulee huti
+(koska osua ei voi kahta kertaa).
+
+Mukavia pelihetkiä!

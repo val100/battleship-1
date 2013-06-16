@@ -78,6 +78,9 @@ public class Board {
         if (!checkPlacementCoords(startX, startY, orientation, size)) {
             return false;
         }
+        if (!checkOrientation(orientation)) {
+            return false;
+        }    
         //check for other ships -- maybe needs to be better?
         int checkX = startX;
         int checkY = startY;
@@ -132,6 +135,15 @@ public class Board {
         }
         return true;
     }
+    
+    public boolean checkOrientation(int orientation) {
+        if (orientation < 0 || orientation > 1) {
+            return false;
+        }
+        return true;
+    }
+        
+    
 
     /**
      * Take a shot at the specified square
