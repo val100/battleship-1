@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 /**
  * This class groups together the essential classes for game functionality and
- * handles their initialization and game end status
+ * handles their initialization and game end status.
  *
  * @author larg
  */

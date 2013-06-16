@@ -22,17 +22,13 @@ public class ClickListener implements MouseListener {
 
     private Frame frame;
     private JPanel panel;
-    private PlayerUser user;
-    private PlayerComp comp;
     private BoardCanvas target;
     private BoardCanvas userBoard;
     private Logic logic;
 
-    public ClickListener(Frame frame, JPanel panel, PlayerUser user, PlayerComp comp, BoardCanvas userBoard, BoardCanvas target, Logic logic) {
+    public ClickListener(Frame frame, JPanel panel, BoardCanvas userBoard, BoardCanvas target, Logic logic) {
         this.frame = frame;
         this.panel = panel;
-        this.user = user;
-        this.comp = comp;
         this.userBoard = userBoard;
         this.target = target;
         this.logic = logic;
@@ -43,8 +39,8 @@ public class ClickListener implements MouseListener {
         int x = (e.getX() / target.getCellSize());
         int y = ((e.getY() - target.getCellSize()) / target.getCellSize() - 1);
         //System.out.println("klikattiin solua: " + x + ", " + y);
-        if (user.shoot(x, y)) {
-            comp.shoot();
+        if (logic.getPlayer().shoot(x, y)) {
+            logic.getComp().shoot();
             target.repaint();
             userBoard.repaint();
             if (logic.gameEnded()) {
@@ -80,7 +76,7 @@ public class ClickListener implements MouseListener {
                 dialog.setSize(250, 120);
                 dialog.setVisible(true);
                 int[] shipCoords = dialog.getShip();
-                if (user.placeShip(shipCoords[0], shipCoords[1], shipCoords[2], s.getLength())) {
+                if (logic.getPlayer().placeShip(shipCoords[0], shipCoords[1], shipCoords[2], s.getLength())) {
                     userBoard.repaint();
                     break;
                 }

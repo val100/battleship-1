@@ -80,7 +80,7 @@ public class FileHandler {
      * 
      * @param name  Name of the user
      * @param score Score of the user
-     * @return      true if write succesful, otherwise false
+     * @return      true if write successful, otherwise false
      */
     public boolean writeScore(String name, int score) {
         Score newScore = new Score(score, name);

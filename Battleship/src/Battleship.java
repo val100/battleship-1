@@ -28,21 +28,6 @@ public class Battleship {
         } else {
             System.out.println("Argument '-t': textmode\nNo argument: graphics");
             System.exit(0);
-        }
-//        if (!args[0].isEmpty() && args[0].equalsIgnoreCase("-t")) {
-//            TextMode text = new TextMode();
-//            text.startGame();
-//        } else {
-//            GUI gui = new GUI();
-//            SwingUtilities.invokeLater(gui);
-//        }
-        //TextMode text = new TextMode();
-        //text.startGame();
-       
-        
-        //GUI gui = new GUI();
-        
-        
-
+        }                
     }
 }

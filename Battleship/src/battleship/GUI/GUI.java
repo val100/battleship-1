@@ -27,22 +27,13 @@ import javax.swing.border.EmptyBorder;
 public class GUI implements Runnable {
     private BoardSize boardsize;
     private JFrame frame;
-    private Board userBoard;
-    private TargetBoard compBoard;
-    private PlayerComp comp;
-    private PlayerUser user;
     private Logic logic;
     private ClickListener clicker;
     
     public GUI() {
         DialogBox askSize = new DialogBox();
         this.boardsize = askSize.askBoardSize();
-        this.logic = new Logic(this.boardsize);
-        this.userBoard = logic.getUserBoard();
-        this.compBoard = logic.getCompBoard();
-        this.comp = logic.getComp();
-        this.user = logic.getPlayer();
-        
+        this.logic = new Logic(this.boardsize);       
     }
 
     @Override
@@ -58,12 +49,12 @@ public class GUI implements Runnable {
 
     private void createComponents(Container container) {
         container.add(createUpperPanel(), BorderLayout.NORTH);
-        BoardCanvas target = new TargetCanvas(compBoard);
-        BoardCanvas userCanvas = new BoardCanvas(userBoard);
+        BoardCanvas target = new TargetCanvas(logic.getCompBoard());
+        BoardCanvas userCanvas = new BoardCanvas(logic.getUserBoard());
         JPanel panel = createBoardPanel(target, userCanvas);
         container.add(panel);
         
-        this.clicker = new ClickListener(frame, panel, user, comp, userCanvas, target, logic);
+        this.clicker = new ClickListener(frame, panel, userCanvas, target, logic);
         frame.addMouseListener(clicker);
     }
     
@@ -95,7 +86,7 @@ public class GUI implements Runnable {
     }
     
     /**
-     * Sets the window size according to selected board size
+     * Sets the window size according to selected board size.
      */
     public void setWindowSize() {
         if (this.boardsize == BoardSize.HARD) {

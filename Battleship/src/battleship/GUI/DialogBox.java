@@ -62,6 +62,11 @@ public class DialogBox {
         questionBox.showMessageDialog(questionBox, errorString);
     }
     
+    /**
+     * This method is used to display the score board.
+     * 
+     * @param scoreString 
+     */
     public void showScore(String scoreString) {
         questionBox.showMessageDialog(questionBox, scoreString);
     }

@@ -72,7 +72,7 @@ public class Board {
      *
      * @see #checkPlacementCoords(int, int, int, int)
      *
-     * @return return true if ship placed succesfully, otherwise false
+     * @return return true if ship placed successfully, otherwise false
      */
     public boolean placeShip(int startX, int startY, int orientation, int size) {
         if (!checkPlacementCoords(startX, startY, orientation, size)) {

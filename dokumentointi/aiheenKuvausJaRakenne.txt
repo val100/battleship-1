@@ -1,0 +1,65 @@
+Aiheen kuvaus 
+
+Aihe: Laivanupotus-peli
+Toteutetaan versio laivanupotus-pelistä, jossa ihmispelaaja pelaa tietokonetta
+vastaan erän laivanupotusta. Peli käydään valitun kokoisella kentällä, jolle pelaaja 
+sijoittaa laivastonsa. Tietokone sijoittaa omat laivansa vastaavaan ruudukkoon. 
+Tämän jälkeen peli käynnistyy. Pelissä pelaaja ja tietokone vuorotellen 
+pommittavat yhtä ruutua kerrallaan yrittäen osua vastustajan laivoihin. Pelin 
+voittaa se osapuoli, joka saa ensimmäisenä tuhottua kaikki vastustajan laivat.
+
+Ohjelma pitää kirjaa pelin voittajasta, käytetyistä kierroksista jne. ja näyttää 
+pelatun kierroksen jälkeen 10 parasta tulosta. Pelaaja voi tallentaa tuloksen 
+yhteyteen nimimerkin. 
+
+Pelille toteutetaan graafinen käyttöliittymä.
+
+Pelissä on valittavissa kolme eri kokoa pelilaudalle: 8 x 8 ruutua, 10 x 10
+ruutua ja 15 x 15 ruutua.
+
+(Laajennuksena ehkä erilaisia aseita käyttöön? -- ehkä tulevaisuudessa, nyt
+ei ehdi)
+
+Pelin laivasto:
+1 x Lentotukialus: 1x5 ruutua
+1 x Risteilijä: 1x4 ruutua
+2 x Hävittäjä: 1x3 ruutua
+2 x Partioalus: 1x2 ruutua
+
+Käyttäjät: 1 pelaaja
+
+Käyttäjän toiminnot: 
+- Laivan asetus
+- Ampuminen kohdetauluun
+- Pelin lopetus (X:ää painamalla)
+- Lopputuloksen tallentaminen nimimerkillä
+
+Rakenne:
+Pelin toiminta rakentuu Logic-luokan ympärille. Logic-luokka sisältää
+viitteet muihin pelin tarvitsemiin olioihin. Näihin kuuluvat pelin
+toiminnallisuuden muodostavat luokat domain-paketissa, sekä tiedoston
+hallinnoinnista huolehtiva FileHandler-luokka omassa paketissaan.
+Käyttöliittymät niin teksti- kuin graafisessa muodossa tuntevat
+ensisijaisesti vain omat komponenttinsa sekä Logic-luokan, jota kautta
+tarvittavaan toiminnallisuuteen päästään käsiksi. 
+
+Graafinen käyttöliittymä on jaettu useampaan luokkaan. Varsinaisesta
+ikkunasta huolehtii GUI-luokka ja sen apuna toimivat klikkauksista ja niihin
+liittyvästä toiminnasta vastuun kantava ClickListener-luokka. Tämän lisäksi
+graafisen käyttöliittymän apuna on pelialustojen graafisesta esityksestä
+vastaavat BoardCanvas- ja TargetCanvas-luokat, jotka vastaavat
+domain-paketin Board- ja TargetBoard luokkia graafisella puolella. Lisäksi
+on kaksi eri luokkaa dialogeille; DialogBox-luokka hoitaa yksinkertaiset
+dialogit/ilmoitukset ja PlaceShipDialog monimutkaisemman dialogin laivojen
+laudalle asettamiselle. Molempia dialogiluokkia "hallinnoi" ClickListener,
+joka synnyttää ne tarpeen mukaan oikeassa kohtaa.
+
+---
+Mitä piti tehdä, muttei ehtinyt (eli pisteenpudotuslista): 
+* Kunnollinen luuppi pelitoiminnolle, jotta uuden pelin voisi
+  aloittaa/lopettaa käynnistämättä koko ohjelmaa uudestaan (ISOIN MIINUS :( )
+* Valikkorakenne (GUI)
+* Koordinaattien merkintä pelilautojen laidoille (GUI)
+* Kokonaan tuhottu vastustajan laiva merkitään ruudukkoon eri tavalla
+* Kauneutta lisää (GUI)
+* Jonkin verran refaktorointia
